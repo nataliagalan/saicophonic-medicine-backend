@@ -8,7 +8,7 @@ class Api::V1::VideosController < ApplicationController
 
   def show
     video = Video.find(params[:id])
-    render json: video
+    render json: VideoSerializer.new(video).to_serialized_json
   end
 
   def create
@@ -17,7 +17,7 @@ class Api::V1::VideosController < ApplicationController
     user = User.find(user_id)
     video = user.videos.create(video_params)
     if video.valid?
-      render json: video
+      render json: VideoSerializer.new(video).to_serialized_json
     else
       render json: { error: 'create error message here' }, status: :not_acceptable
     end
@@ -27,7 +27,7 @@ class Api::V1::VideosController < ApplicationController
     video = Video.find(params[:id])
     video.update(video_params)
     if video.valid?
-      render json: video, status: :ok
+      render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
       render json: { error: 'update error message here' }, status: :not_acceptable
     end
