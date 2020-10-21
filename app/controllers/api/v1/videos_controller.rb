@@ -13,9 +13,11 @@ class Api::V1::VideosController < ApplicationController
 
   def create
     # user_id = request.headers[:id]
-    user_id = 2
+    user_id = 5
     user = User.find(user_id)
+    # user.videos.create creates and returns that video
     video = user.videos.create(video_params)
+    # need to create songs as well
     if video.valid?
       render json: VideoSerializer.new(video).to_serialized_json
     else
@@ -36,6 +38,7 @@ class Api::V1::VideosController < ApplicationController
   def destroy
     video = Video.find(params[:id])
     begin
+      video.songs.destroy_all
       video.destroy
       render json: { message: 'success', status: 200 }
     rescue StandardError
@@ -46,7 +49,7 @@ class Api::V1::VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:url, :lyrics, :user_id)
+    params.require(:video).permit(:url, :user_id)
     # byebug
   end
 
