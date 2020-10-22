@@ -15,23 +15,26 @@ class Api::V1::VideosController < ApplicationController
     # user_id = request.headers[:id]
     user_id = 5
     user = User.find(user_id)
-    # user.videos.create creates and returns that video
+    # user.videos.create creates and returns that new video
     video = user.videos.create(video_params)
-    # need to create songs as well
+    # possibly move the create songs to inside the if statement
+    params["songs"].each{|song| video.songs.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) } 
     if video.valid?
       render json: VideoSerializer.new(video).to_serialized_json
     else
-      render json: { error: 'create error message here' }, status: :not_acceptable
+      render json: { error: 'could not create new video' }, status: :not_acceptable
     end
   end
 
   def update
     video = Video.find(params[:id])
     video.update(video_params)
+    #update the songs as well
     if video.valid?
+      params["songs"].each{|song| video.songs.update(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) }
       render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
-      render json: { error: 'update error message here' }, status: :not_acceptable
+      render json: { error: 'could not update video info' }, status: :not_acceptable
     end
   end
 
@@ -42,7 +45,7 @@ class Api::V1::VideosController < ApplicationController
       video.destroy
       render json: { message: 'success', status: 200 }
     rescue StandardError
-      render json: { error: 'unable to delete' }
+      render json: { error: 'could not delete' }
     end
   end
 
@@ -50,7 +53,6 @@ class Api::V1::VideosController < ApplicationController
 
   def video_params
     params.require(:video).permit(:url, :user_id)
-    # byebug
   end
 
 end #end of vc class
