@@ -29,9 +29,15 @@ class Api::V1::VideosController < ApplicationController
   def update
     video = Video.find(params[:id])
     video.update(video_params)
-    #update the songs as well
     if video.valid?
-      params["songs"].each{|song| video.songs.update(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) }
+      video.songs.each do |video_song|
+        video_song.destroy
+      end
+
+      params["songs"].each do |song| 
+        Song.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) 
+      end
+
       render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
       render json: { error: 'could not update video info' }, status: :not_acceptable
