@@ -10,8 +10,8 @@ Song.destroy_all
 Video.destroy_all
 User.destroy_all
 
-
-u1 = User.create(username: 'ursula')
+#I HAVE NOT RESEEDED AFTER ADDING THIS PW KEY BELOW
+u1 = User.create(username: 'ursula', password: '1')
 
 v1 = Video.create(url: 'https://youtu.be/VEUe1J0c2k4', user_id: User.ids.sample)
 
