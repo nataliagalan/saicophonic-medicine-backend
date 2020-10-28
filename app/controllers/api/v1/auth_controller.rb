@@ -4,7 +4,7 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       payload = { user_id: user.id }
-      token = JWT.encode(payload, 'Secret', 'HS256')
+      token = JWT.encode(payload, ENV['jwt_secret'], 'HS256')
       #send user to FE
       render json: { id: user.id, username: user.username, token: token }
 
@@ -15,7 +15,7 @@ class Api::V1::AuthController < ApplicationController
 
   def show
     token = request.headers[:Authorization].split(' ').last
-    decoded_token = JWT.decode(token, 'Secret', true, { algorithm: 'HS256'})
+    decoded_token = JWT.decode(token, ENV['jwt_secret'], true, { algorithm: 'HS256'})
     user_id = decoded_token[0]['user_id']
     user = User.find(user_id)
     
