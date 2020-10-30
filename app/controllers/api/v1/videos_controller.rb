@@ -3,7 +3,19 @@ class Api::V1::VideosController < ApplicationController
     videos = Video.all 
     # render json: videos
     render json: VideoSerializer.new(videos).to_serialized_json
+  end
 
+  #GET /search/:query
+  def search
+    videos = Video.search params[:query], misspellings: {edit_distance: 2}
+    
+    puts "TOTAL COUNT #{videos.total_count }"
+    if response
+    # render :json => videos.to_json
+    render json: VideoSerializer.new(videos).to_serialized_json
+    else
+    render json: { error: 'did not find anything' }
+    end
   end
 
   def show
