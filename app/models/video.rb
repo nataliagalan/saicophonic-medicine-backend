@@ -3,15 +3,12 @@ class Video < ApplicationRecord
   has_many :songs
 
   #validations go here too!
-
+  
+  #remember to always reindex after making changes below here
   #this will index the Song model whenever a record is created or updated or destroyed
-  searchkick word_middle: [:songs]
-  
   scope :search_import, -> { includes(:songs) }
+  searchkick text_middle: [:song_title, :song_lyrics]
   
-  
-  #remember to always reindex after making changes here
-
   #keys inside search_data describe how the data is indexed
   def search_data
     { 

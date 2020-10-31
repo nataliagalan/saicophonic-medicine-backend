@@ -37,14 +37,15 @@ class Api::V1::VideosController < ApplicationController
     elastic_query = {
       # fields: [:title, :description, :tagged, :artist_name],
       fields: [:song_title, :song_lyrics],
+      match: :text_middle,
       misspellings: {edit_distance: 2}
+      
       # include a where clause so I'm only searching records returned by the other filters
       # where: { id: listings_ids },
       # order: { _score: :desc },
       # page: params[:page],
       # per_page: 15
     }
-
 
     videos = Video.search params[:query], elastic_query
     
@@ -57,8 +58,6 @@ class Api::V1::VideosController < ApplicationController
     render json: { error: 'did not find anything' }
     end
   end
-
-
 
   def show
     video = Video.find(params[:id])
