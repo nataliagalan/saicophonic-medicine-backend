@@ -110,7 +110,7 @@ class Api::V1::VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:url, :user_id)
+    params.require(:video).permit(:url, :band, :user_id)
   end
 
 end #end of vc class
