@@ -7,12 +7,13 @@ class Video < ApplicationRecord
   #remember to always reindex after making changes below here
   #this will index the Song model whenever a record is created or updated or destroyed
   scope :search_import, -> { includes(:songs) }
-  searchkick text_middle: [:song_title, :song_lyrics]
+  searchkick text_middle: [:band, :song_title, :song_lyrics]
   
   #keys inside search_data describe how the data is indexed
   def search_data
     { 
       # song_title: songs.map(&:title),
+      band: band,
       song_title: "#{songs.map(&:title).join(' ')}",
       song_lyrics: "#{songs.map(&:lyrics).join(' ')}"
       # tagged: "#{tags.map(&:name).join(' ')}" 
