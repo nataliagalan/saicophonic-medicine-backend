@@ -36,7 +36,7 @@ class Api::V1::VideosController < ApplicationController
   def search
     elastic_query = {
       # fields: [:title, :description, :tagged, :artist_name],
-      fields: [:song_title, :song_lyrics],
+      fields: [:band, :song_title, :song_lyrics],
       match: :text_middle,
       misspellings: {edit_distance: 2}
       
