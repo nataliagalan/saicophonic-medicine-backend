@@ -1,35 +1,8 @@
 class Api::V1::VideosController < ApplicationController
   def index
-    videos = Video.all 
-    # render json: videos
+    videos = Video.all.reverse 
     render json: VideoSerializer.new(videos).to_serialized_json
   end
-
-  # class << self
-  #   def query(params)
-  #     listings = self.active_record_search(params) # filter by other parameters first
-  
-  #     # return right there if search is blank
-  #     return listings.page(params[:page]) if params[:search].blank?
-  
-  #     # otherwise pass already filtered set to elastic search for further filtering
-  #     listing_ids = listings.pluck(:id)
-  #     self.elastic_search(params, listing_ids)
-  #   end
-  
-  #   def active_record_search(params)
-  #     # ...some code
-  #   end
-  
-  #   def elastic_search(params, listing_ids)
-  #     elastic_query = {
-
-  #       fields: [:song_title, :song_lyrics],
-  #     }
-  
-  #     self.search(params[:search], elastic_query)
-  #   end
-  # end
 
 
   #GET /search/:query
