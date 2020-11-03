@@ -13,7 +13,10 @@ class VideoSerializer
       },
       except: [:updated_at, :created_at],
     }
+
     @video.to_json(options)
   end
 
 end #end of vs
+
+
