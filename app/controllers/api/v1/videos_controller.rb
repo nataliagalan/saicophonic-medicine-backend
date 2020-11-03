@@ -48,14 +48,11 @@ class Api::V1::VideosController < ApplicationController
     }
 
     videos = Video.search params[:query], elastic_query
-    
-    # videos = Video.search params[:query], misspellings: {edit_distance: 2}
-    puts "TOTAL COUNT #{videos.total_count }"
+
     if response
-    # render :json => videos.to_json
-    render json: VideoSerializer.new(videos).to_serialized_json
+      render json: VideoSerializer.new(videos).to_serialized_json
     else
-    render json: { error: 'did not find anything' }
+      render json: { error: 'did not find anything' }
     end
   end
 
