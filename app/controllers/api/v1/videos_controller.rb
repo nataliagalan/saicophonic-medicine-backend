@@ -5,6 +5,11 @@ class Api::V1::VideosController < ApplicationController
   end
 
 
+
+
+
+  
+
   #GET /search/:query
   def search
     elastic_query = {
