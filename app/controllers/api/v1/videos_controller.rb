@@ -4,12 +4,6 @@ class Api::V1::VideosController < ApplicationController
     render json: VideoSerializer.new(videos).to_serialized_json
   end
 
-
-
-
-
-  
-
   #GET /search/:query
   def search
     elastic_query = {
