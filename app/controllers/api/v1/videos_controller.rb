@@ -6,9 +6,7 @@ class Api::V1::VideosController < ApplicationController
 
   #GET /search/:query
   def search
-
     elastic_query = {
-
       operator: "or", 
       fields: [{"band^100" => :text_middle,}, 
       {"song_title^100" => :text_middle,}, 
@@ -80,6 +78,12 @@ class Api::V1::VideosController < ApplicationController
     rescue StandardError
       render json: { error: 'could not delete' }
     end
+  end
+
+  def random
+    id = Video.all.ids.sample
+    video = Video.find(id)
+    render json: VideoSerializer.new(video).to_serialized_json
   end
 
   private
