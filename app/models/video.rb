@@ -8,6 +8,7 @@ class Video < ApplicationRecord
   #this will index the Song model whenever a record is created or updated or destroyed
   scope :search_import, -> { includes(:songs) }
   searchkick text_middle: [:band, :song_title, :song_lyrics]
+
   
   #keys inside search_data describe how the data is indexed
   def search_data
