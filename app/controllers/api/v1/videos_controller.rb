@@ -6,20 +6,37 @@ class Api::V1::VideosController < ApplicationController
 
   #GET /search/:query
   def search
+
     elastic_query = {
-      # fields: [:title, :description, :tagged, :artist_name],
-      fields: [:band, :song_title, :song_lyrics],
-      match: :text_middle,
-      misspellings: {edit_distance: 2}
-      
-      # include a where clause so I'm only searching records returned by the other filters
-      # where: { id: listings_ids },
-      # order: { _score: :desc },
-      # page: params[:page],
-      # per_page: 15
+
+      operator: "or", 
+      fields: [{band: :text_middle,}, 
+      {song_title: :text_middle,}, 
+      {song_lyrics: :text_middle,}], 
+      match: :text_middle, 
+      misspellings: {below: 1, edit_distance: 1}, 
+      order: {_score: :desc}
+
+    #   # fields: [:band^10, :song_title^10, :song_lyrics],
+
+    #   operator: "or", 
+    #   # suggest: true,
+    #   # fields: [:band],
+    #   fields: ["band^8", "song_title^7", "song_lyrics"],
+    #   match: :text_middle,
+
+    #   misspellings: {edit_distance: 1}
+    #   misspellings: false,
+   
+   
+    #   # include a where clause so I'm only searching records returned by the other filters
+    #   # where: { id: listings_ids },
+    #   # order: { _score: :band },
+    #   # page: params[:page],
+    #   # per_page: 15
     }
 
-    videos = Video.search params[:query], elastic_query
+    videos = Video.search(params[:query], elastic_query)
 
     if response
       render json: VideoSerializer.new(videos).to_serialized_json
