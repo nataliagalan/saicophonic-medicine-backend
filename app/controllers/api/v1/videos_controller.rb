@@ -10,30 +10,19 @@ class Api::V1::VideosController < ApplicationController
     elastic_query = {
 
       operator: "or", 
-      fields: [{band: :text_middle,}, 
-      {song_title: :text_middle,}, 
-      {song_lyrics: :text_middle,}], 
+      fields: [{"band^100" => :text_middle,}, 
+      {"song_title^100" => :text_middle,}, 
+      {"song_lyrics^70" => :text_middle,}], 
       match: :text_middle, 
       misspellings: {below: 1, edit_distance: 1}, 
       order: {_score: :desc}
+      # debug: true
 
-    #   # fields: [:band^10, :song_title^10, :song_lyrics],
-
-    #   operator: "or", 
-    #   # suggest: true,
-    #   # fields: [:band],
-    #   fields: ["band^8", "song_title^7", "song_lyrics"],
-    #   match: :text_middle,
-
-    #   misspellings: {edit_distance: 1}
     #   misspellings: false,
-   
-   
-    #   # include a where clause so I'm only searching records returned by the other filters
-    #   # where: { id: listings_ids },
-    #   # order: { _score: :band },
-    #   # page: params[:page],
-    #   # per_page: 15
+    #   include a where clause so I'm only searching records returned by the other filters
+    #   where: { id: listings_ids },
+    #   page: params[:page],
+    #   per_page: 15
     }
 
     videos = Video.search(params[:query], elastic_query)
