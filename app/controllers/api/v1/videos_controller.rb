@@ -12,7 +12,8 @@ class Api::V1::VideosController < ApplicationController
       {"song_title^100" => :text_middle,}, 
       {"song_lyrics^70" => :text_middle,},
       {"tagged^50" => :text_middle,}], 
-      match: :text_middle, 
+      fields: ["band^100", "song_title^100", "song_lyrics^70", "tagged^50" ], 
+ 
       misspellings: {below: 1, edit_distance: 1}, 
       order: {_score: :desc}
       # debug: true
