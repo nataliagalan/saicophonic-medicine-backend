@@ -11,7 +11,7 @@ class VideoSerializer
           only: [:lyrics, :timestamp, :title, :video_id]
         },
         tags: {
-          only: [:name]
+          only: [:name, :id]
         }
       },
       except: [:updated_at, :created_at],

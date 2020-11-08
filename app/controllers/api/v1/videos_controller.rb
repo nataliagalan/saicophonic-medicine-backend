@@ -22,7 +22,7 @@ class Api::V1::VideosController < ApplicationController
     #   include a where clause so I'm only searching records returned by the other filters
     #   where: { id: listings_ids },
     #   page: params[:page],
-    #   per_page: 15
+      # per_page: 2
     }
 
     videos = Video.search(params[:query], elastic_query)
@@ -44,14 +44,13 @@ class Api::V1::VideosController < ApplicationController
     user = User.find(user_id)
     # user.videos.create creates and returns that new video
     video = user.videos.create(video_params)
-    # possibly move the create songs to inside the if statement
+    # possibly move the create songs and tag methods inside the if statement
     params["songs"].each{|song| video.songs.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) } 
     
-    # byebug
-    # params["tags"].split(', ').each do |tag|
-    #   tag_id = Tag.find_or_create_by({name: tag}).id
-    #   VideoTag.create({"tag_id": tag_id, "video_id": video.id})
-    # end
+    params["tags"].each do |tag| 
+      tag_id = Tag.find_or_create_by({name: tag["name"]}).id 
+      VideoTag.find_or_create_by({ tag_id: tag_id, video_id: video.id })  
+    end
     
     if video.valid?
       render json: VideoSerializer.new(video).to_serialized_json
@@ -72,6 +71,15 @@ class Api::V1::VideosController < ApplicationController
         Song.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) 
       end
 
+      video.video_tags.each do |video_tag|
+        video_tag.destroy
+      end
+
+      params["tags"].each do |tag| 
+        tag_id = Tag.find_or_create_by({name: tag["name"]}).id 
+        VideoTag.find_or_create_by({ tag_id: tag_id, video_id: video.id })  
+      end
+
       render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
       render json: { error: 'could not update video info' }, status: :not_acceptable
@@ -83,7 +91,7 @@ class Api::V1::VideosController < ApplicationController
     begin
       video.songs.destroy_all
       video.destroy
-      render json: { message: 'success', status: 200 }
+      render json: { message: 'great success', status: 200 }
     rescue StandardError
       render json: { error: 'could not delete' }
     end
