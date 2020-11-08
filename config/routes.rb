@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :videos
       resources :users
       resources :songs
+      resources :tags
       post '/auth', to: 'auth#create'
       get 'current_user', to: 'auth#show'
       get 'videos/search/:query', to: 'videos#search', as: :search
