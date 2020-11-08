@@ -4,7 +4,7 @@ class Tag < ApplicationRecord
 
     #this will index the Tag model whenever a record is created or updated or destroyed
     searchkick text_middle: [:name]
-
+    
     after_commit :reindex_video
   
     def reindex_video

@@ -23,12 +23,6 @@ class Video < ApplicationRecord
       tagged: "#{tags.map(&:name).join(', ')}" 
     }
 
-    # attributes.merge makes it so attributes are not nested under "_source"
-    # attributes.merge(
-    #   #You use the .map method for the has_many associations.
-    #   song_title: songs.map(&:title),
-    #   song_lyrics: songs.map(&:lyrics)
-    # )
   end
 
 
