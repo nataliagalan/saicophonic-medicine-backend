@@ -9,6 +9,9 @@ class VideoSerializer
       include: {
         songs: {
           only: [:lyrics, :timestamp, :title, :video_id]
+        },
+        tags: {
+          only: [:name]
         }
       },
       except: [:updated_at, :created_at],

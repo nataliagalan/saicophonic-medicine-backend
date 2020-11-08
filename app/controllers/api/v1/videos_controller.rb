@@ -10,7 +10,8 @@ class Api::V1::VideosController < ApplicationController
       operator: "or", 
       fields: [{"band^100" => :text_middle,}, 
       {"song_title^100" => :text_middle,}, 
-      {"song_lyrics^70" => :text_middle,}], 
+      {"song_lyrics^70" => :text_middle,},
+      {"tagged^50" => :text_middle,}], 
       match: :text_middle, 
       misspellings: {below: 1, edit_distance: 1}, 
       order: {_score: :desc}
@@ -44,6 +45,13 @@ class Api::V1::VideosController < ApplicationController
     video = user.videos.create(video_params)
     # possibly move the create songs to inside the if statement
     params["songs"].each{|song| video.songs.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) } 
+    
+    # byebug
+    # params["tags"].split(', ').each do |tag|
+    #   tag_id = Tag.find_or_create_by({name: tag}).id
+    #   VideoTag.create({"tag_id": tag_id, "video_id": video.id})
+    # end
+    
     if video.valid?
       render json: VideoSerializer.new(video).to_serialized_json
     else
