@@ -1,7 +1,9 @@
 class Api::V1::VideosController < ApplicationController
+
   def index
-    # videos = Video.all.reverse.paginate(page: params[:page], per_page: 2)
-    videos = Video.paginate(page: params[:page], per_page: 2)
+    # videos = Video.all.reverse
+    videos = Video.paginate(page: params[:page], per_page: Video.videos_per_page)
+
     render json: VideoSerializer.new(videos).to_serialized_json
   end
 
