@@ -1,4 +1,5 @@
 class Video < ApplicationRecord
+
   belongs_to :user
   has_many :songs
   has_many :video_tags
@@ -25,7 +26,17 @@ class Video < ApplicationRecord
 
   end
 
+  def self.videos_per_page
+    2
+  end
 
-end
+
+  def number_of_pages
+    (Video.all.count.to_f / Video.videos_per_page).ceil
+  end
+
+
+
+end #end of video class
 
 

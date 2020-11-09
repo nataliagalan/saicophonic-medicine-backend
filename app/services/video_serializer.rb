@@ -14,6 +14,7 @@ class VideoSerializer
           only: [:name, :id]
         }
       },
+      methods: :number_of_pages,
       except: [:updated_at, :created_at],
     }
 
@@ -21,5 +22,3 @@ class VideoSerializer
   end
 
 end #end of vs
-
-
