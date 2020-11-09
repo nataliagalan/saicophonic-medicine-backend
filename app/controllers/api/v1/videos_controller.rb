@@ -34,6 +34,26 @@ class Api::V1::VideosController < ApplicationController
     end
   end
 
+  #GET videos/tagged/:tag
+  def search_tagged
+    elastic_query = {
+      operator: "or", 
+      fields: [{"tagged^100" => :text_middle,}], 
+      # fields: ["tagged^100" ], 
+      misspellings: {below: 1, edit_distance: 1}, 
+      order: {_score: :desc}
+      # debug: true
+    }
+
+    videos = Video.search(params[:tag], elastic_query)
+
+    if response
+      render json: VideoSerializer.new(videos).to_serialized_json
+    else
+      render json: { error: 'did not find anything' }
+    end
+  end
+
   def show
     video = Video.find(params[:id])
     render json: VideoSerializer.new(video).to_serialized_json
