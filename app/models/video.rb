@@ -27,7 +27,7 @@ class Video < ApplicationRecord
   end
 
   def self.videos_per_page
-    2
+    8
   end
 
 
