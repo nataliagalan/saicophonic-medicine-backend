@@ -1,6 +1,7 @@
 class Api::V1::VideosController < ApplicationController
   def index
-    videos = Video.all.reverse 
+    # videos = Video.all.reverse.paginate(page: params[:page], per_page: 2)
+    videos = Video.paginate(page: params[:page], per_page: 2)
     render json: VideoSerializer.new(videos).to_serialized_json
   end
 
@@ -15,13 +16,14 @@ class Api::V1::VideosController < ApplicationController
       fields: ["band^100", "song_title^100", "song_lyrics^70", "tagged^50" ], 
  
       misspellings: {below: 1, edit_distance: 1}, 
-      order: {_score: :desc}
+      order: {_score: :desc},
       # debug: true
 
     #   misspellings: false,
     #   include a where clause so I'm only searching records returned by the other filters
     #   where: { id: listings_ids },
     #   page: params[:page],
+      # page: 2,
       # per_page: 2
     }
 
