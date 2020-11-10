@@ -1,7 +1,7 @@
 class Api::V1::VideosController < ApplicationController
 
   def index
-    videos = Video.paginate(page: params[:page], per_page: Video.videos_per_page).reverse
+    videos = Video.paginate(page: params[:page], per_page: Video.videos_per_page)
 
     render json: VideoSerializer.new(videos).to_serialized_json
   end
@@ -70,13 +70,17 @@ class Api::V1::VideosController < ApplicationController
     # possibly move the create songs and tag methods inside the if statement
     params["songs"].each{|song| video.songs.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) } 
     
-    params["tags"].each do |tag| 
-      tag_id = Tag.find_or_create_by({name: tag["name"]}).id 
-      VideoTag.find_or_create_by({ tag_id: tag_id, video_id: video.id })  
+    if params["tags"]
+      params["tags"].each do |tag| 
+        tag_id = Tag.find_or_create_by({name: tag}).id 
+        VideoTag.find_or_create_by({ tag_id: tag_id, video_id: video.id })  
+      end
     end
+
+    
     
     if video.valid?
-      render json: VideoSerializer.new(video).to_serialized_json
+      render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
       render json: { error: 'could not create new video' }, status: :not_acceptable
     end
