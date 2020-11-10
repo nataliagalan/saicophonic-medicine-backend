@@ -6,7 +6,7 @@ class Api::V1::VideosController < ApplicationController
     render json: VideoSerializer.new(videos).to_serialized_json
   end
 
-  #GET /search/:query
+  #GET /videos/search/:query
   def search
     elastic_query = {
       operator: "or", 
@@ -17,15 +17,15 @@ class Api::V1::VideosController < ApplicationController
       fields: ["band^100", "song_title^100", "song_lyrics^70", "tagged^50" ], 
  
       misspellings: {below: 1, edit_distance: 1}, 
-      order: {_score: :desc},
-      # debug: true
+      order: {_score: :desc}
 
+    #   debug: true
     #   misspellings: false,
     #   include a where clause so I'm only searching records returned by the other filters
     #   where: { id: listings_ids },
     #   page: params[:page],
-      # page: 2,
-      # per_page: 2
+    #   page: 2,
+    #   per_page: 2
     }
 
     videos = Video.search(params[:query], elastic_query)
@@ -37,7 +37,7 @@ class Api::V1::VideosController < ApplicationController
     end
   end
 
-  #GET videos/tagged/:tag
+  #GET /videos/tagged/:tag
   def search_tagged
     elastic_query = {
       operator: "or", 
