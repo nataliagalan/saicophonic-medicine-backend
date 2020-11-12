@@ -3,6 +3,7 @@ class Api::V1::VideosController < ApplicationController
   def index
     videos = Video.paginate(page: params[:page], per_page: Video.videos_per_page)
 
+
     render json: VideoSerializer.new(videos).to_serialized_json
   end
 
@@ -17,15 +18,14 @@ class Api::V1::VideosController < ApplicationController
       fields: ["band^100", "song_title^100", "song_lyrics^70", "tagged^50" ], 
  
       misspellings: {below: 1, edit_distance: 1}, 
-      order: {_score: :desc}
+      order: {_score: :desc},
 
     #   debug: true
     #   misspellings: false,
     #   include a where clause so I'm only searching records returned by the other filters
     #   where: { id: listings_ids },
     #   page: params[:page],
-    #   page: 2,
-    #   per_page: 2
+      # per_page: 8
     }
 
     videos = Video.search(params[:query], elastic_query)
@@ -77,8 +77,6 @@ class Api::V1::VideosController < ApplicationController
       end
     end
 
-    
-    
     if video.valid?
       render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
@@ -114,14 +112,27 @@ class Api::V1::VideosController < ApplicationController
   end
 
   def destroy
+    # video = Video.find(params[:id])
+    # begin
+    #   video.songs.destroy_all
+    #   video.video_tags.destroy_all
+    #   video.destroy
+    #   render json: { message: 'great success', status: 200 }
+    # rescue StandardError
+    #   render json: { error: 'could not delete' }
+    # end
+
     video = Video.find(params[:id])
     begin
       video.songs.destroy_all
+      video.video_tags.destroy_all
       video.destroy
       render json: { message: 'great success', status: 200 }
     rescue StandardError
       render json: { error: 'could not delete' }
     end
+
+
   end
 
   def random

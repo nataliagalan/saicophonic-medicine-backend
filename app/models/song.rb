@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
   belongs_to :video
+  validates :lyrics, :title, :timestamp, presence: true
 
   #this will index the Song model whenever a record is created or updated or destroyed
   searchkick text_middle: [:title, :lyrics]
