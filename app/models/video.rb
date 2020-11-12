@@ -1,11 +1,12 @@
 class Video < ApplicationRecord
+  default_scope {order(created_at: :desc)}
 
   belongs_to :user
   has_many :songs
   has_many :video_tags
   has_many :tags, through: :video_tags
 
-  #validations go here too!
+  validates :url, :band, presence: true
   
   #remember to always reindex after making changes below here
   #this will index the Song model whenever a record is created or updated or destroyed
@@ -34,6 +35,8 @@ class Video < ApplicationRecord
   def number_of_pages
     (Video.all.count.to_f / Video.videos_per_page).ceil
   end
+
+
 
 
 
