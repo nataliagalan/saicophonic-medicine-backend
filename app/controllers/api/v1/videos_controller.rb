@@ -23,9 +23,7 @@ class Api::V1::VideosController < ApplicationController
       # page: params[:page],
       # per_page: 8
     }
-
     videos = Video.search(params[:query], elastic_query)
-
     if response
       render json: VideoSerializer.new(videos).to_serialized_json
     else
