@@ -7,7 +7,6 @@ class Api::V1::AuthController < ApplicationController
       token = JWT.encode(payload, ENV['jwt_secret'], 'HS256')
       #send user to FE
       render json: { id: user.id, username: user.username, token: token }
-
     else
       render json: { error: 'user or pw invalid' }
     end
@@ -18,13 +17,11 @@ class Api::V1::AuthController < ApplicationController
     decoded_token = JWT.decode(token, ENV['jwt_secret'], true, { algorithm: 'HS256'})
     user_id = decoded_token[0]['user_id']
     user = User.find(user_id)
-    
     if user
       render json: { id: user.id, username: user.username, token: token }
     else
       render json: { error: 'invalid token' }
     end
-
   end #end of show action
 
 end #end of ac

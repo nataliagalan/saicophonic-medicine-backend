@@ -14,7 +14,6 @@ class Video < ApplicationRecord
 
   searchkick text_middle: [:band, :song_title, :song_lyrics, :tagged]
 
-  
   #keys inside search_data describe how the data is indexed
   def search_data
     { 
@@ -24,21 +23,15 @@ class Video < ApplicationRecord
       song_lyrics: "#{songs.map(&:lyrics).join(' ')}",
       tagged: "#{tags.map(&:name).join(', ')}" 
     }
-
   end
 
   def self.videos_per_page
     8
   end
 
-
   def number_of_pages
     (Video.all.count.to_f / Video.videos_per_page).ceil
   end
-
-
-
-
 
 end #end of video class
 
