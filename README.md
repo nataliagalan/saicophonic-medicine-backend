@@ -5,11 +5,11 @@ A portable music venue and archive, showcasing an expanding library of live musi
 - Admin: 
   - Build and categorize an archive of videos with corresponding songs, lyrics and timestamps.
   - Click on a timestamps to play the video at a specific time.
-  - View both lyrics and video simultaneously in either desktop or mobile devices.
+  - View both lyrics and video simultaneously in desktop or mobile devices.
   - Drag form input fields to custom order.
   - Add or remove custom number of input fields.
   - Add and delete video tags.
-  - Add and delete videos.
+  - Add and delete video entries.
   - Edit timestamps, song titles, lyrics, url and artist/band name.
 
 - Viewer: 
