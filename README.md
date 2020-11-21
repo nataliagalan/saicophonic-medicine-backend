@@ -37,3 +37,6 @@ A portable music venue and archive, showcasing an expanding library of live musi
 
  ## Walkthrough
 [See a video demo of the app's functionality.](https://vimeo.com/481551182/c203801a37 "Saicophonic Medicine Demo") 
+
+## Contact
+hi@nataliagalan.com | [Visit my LinkedIn](https://linkedin.com/in/natalia-galan "Natalia Galán LinkedIn") 
