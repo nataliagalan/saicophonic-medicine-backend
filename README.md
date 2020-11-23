@@ -27,7 +27,7 @@ A portable music venue and archive, showcasing an expanding library of live musi
 - Further secured credential management via Figaro gem.
 - Ability to seamlessly add or remove input fields dynamically.
 - Utilized Atlassian library to build drag and drop functionality accessible by keyboard as well.
-- Fine tuned search and discovery capabilities using Elasticsearch.
+- Fine tuned search and discovery capabilities via Elasticsearch and autocomplete.
 - Executed server and client side pagination using React Hooks.
 - Delivered a fully responsive site with the ability to toggle smoothly between list and grid view.
 - Optimized pages for fast loading.
