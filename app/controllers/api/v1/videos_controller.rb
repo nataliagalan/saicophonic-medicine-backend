@@ -8,7 +8,7 @@ class Api::V1::VideosController < ApplicationController
   #GET /videos/search/:query
   def search
     elastic_query = {
-      operator: "or", 
+      # operator: "or", 
       fields: [{"band^100" => :text_middle,}, 
       {"song_title^100" => :text_middle,}, 
       {"song_lyrics^60" => :text_middle,},
