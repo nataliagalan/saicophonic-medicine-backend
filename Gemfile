@@ -5,6 +5,9 @@ ruby '2.7.2'
 
 gem 'jwt'
 gem 'figaro'
+
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
+
 gem 'searchkick'
 gem 'will_paginate', '~> 3.3'
 
