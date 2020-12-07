@@ -14,7 +14,7 @@ class Api::V1::AuthController < ApplicationController
   end #end of create action
 
   def show
-    byebug
+    # byebug
     # token = request.headers[:Authorization].split(' ').last
     token = request.headers[:Authorization]
     decoded_token = JWT.decode(token, ENV['jwt_secret'], true, { algorithm: 'HS256'})
