@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 gem 'jwt'
-gem 'figaro'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem 'searchkick'
 gem 'will_paginate', '~> 3.3'
