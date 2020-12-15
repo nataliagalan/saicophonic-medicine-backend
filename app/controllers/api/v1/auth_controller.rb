@@ -17,8 +17,8 @@ class Api::V1::AuthController < ApplicationController
     # byebug
     # token = request.headers[:Authorization].split(' ').last
     token = request.headers[:Authorization]
-    # decoded_token = JWT.decode(token, ENV['jwt_secret'], true, { algorithm: 'HS256'})
-    decoded_token = JWT.decode(token, Figaro.env.jwt_secret, true, { algorithm: 'HS256'})
+    decoded_token = JWT.decode(token, ENV['jwt_secret'], true, { algorithm: 'HS256'})
+    # decoded_token = JWT.decode(token, Figaro.env.jwt_secret, true, { algorithm: 'HS256'})
     user_id = decoded_token[0]['user_id']
     user = User.find(user_id)
     if user
