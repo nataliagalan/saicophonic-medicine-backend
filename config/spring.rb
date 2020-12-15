@@ -3,5 +3,5 @@ Spring.watch(
   ".rbenv-vars",
   "tmp/restart.txt",
   "tmp/caching-dev.txt",
-  "config/application.yml"
+  ".application.yml"
 )
