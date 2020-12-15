@@ -5,7 +5,8 @@ class Api::V1::AuthController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       payload = { user_id: user.id }
-      token = JWT.encode(payload, ENV['jwt_secret'], 'HS256')
+      # token = JWT.encode(payload, ENV['jwt_secret'], 'HS256')
+      token = JWT.encode(payload, 'S3k3R3T', 'HS256')
       #send user to FE
       render json: { id: user.id, username: user.username, token: token }
     else
