@@ -53,7 +53,7 @@ class Api::V1::VideosController < ApplicationController
   end
 
   def create
-    user_id = request.headers[:id]
+    user_id = request.headers["id"]
     user = User.find(user_id)
     # user.videos.create creates and returns that new video
     video = user.videos.create(video_params)
