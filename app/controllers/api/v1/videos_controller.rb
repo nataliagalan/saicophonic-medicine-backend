@@ -58,7 +58,8 @@ class Api::V1::VideosController < ApplicationController
     user = User.find(2)
     # user.videos.create creates and returns that new video
     # video = user.videos.create(video_params)
-    video = user.videos.create(url: params["url"], band: params["band"], user_id: 2)
+    # video = user.videos.create(url: params["url"], band: params["band"], user_id: 2)
+    video = Video.create(url: params["url"], band: params["band"], user_id: 2)
     if video.valid?
       # params["songs"].each{|song| video.songs.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) } 
       # if params["tags"]
