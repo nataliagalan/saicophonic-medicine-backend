@@ -57,15 +57,16 @@ class Api::V1::VideosController < ApplicationController
     # user = User.find(user_id)
     user = User.find(2)
     # user.videos.create creates and returns that new video
-    video = user.videos.create(video_params)
+    # video = user.videos.create(video_params)
+    video = user.videos.create(url: params["url"], band: params["band"], user_id: 2)
     if video.valid?
       params["songs"].each{|song| video.songs.create(timestamp: song["timestamp"], title: song["title"], lyrics: song["lyrics"], video_id: video.id) } 
-    if params["tags"]
-      params["tags"].each do |tag| 
-        tag_id = Tag.find_or_create_by({name: tag}).id 
-        VideoTag.find_or_create_by({ tag_id: tag_id, video_id: video.id })  
+      if params["tags"]
+        params["tags"].each do |tag| 
+          tag_id = Tag.find_or_create_by({name: tag}).id 
+          VideoTag.find_or_create_by({ tag_id: tag_id, video_id: video.id })  
+        end
       end
-    end
       render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
       render json: { error: 'could not create new video' }, status: :not_acceptable
@@ -113,10 +114,10 @@ class Api::V1::VideosController < ApplicationController
     render json: VideoSerializer.new(video).to_serialized_json
   end
 
-  private
+  # private
 
-  def video_params
-    params.require(:video).permit(:url, :band, :user_id)
-  end
+  # def video_params
+  #   params.require(:video).permit(:url, :band, :user_id)
+  # end
 
 end #end of vc class
