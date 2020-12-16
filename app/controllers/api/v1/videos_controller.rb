@@ -69,7 +69,7 @@ class Api::V1::VideosController < ApplicationController
       end
       render json: VideoSerializer.new(video).to_serialized_json, status: :ok
     else
-      render json: { error: 'could not create new video' }, status: :not_acceptable
+      render json: { error: 'could not create new video' }
     end
   end # end of create action
 
