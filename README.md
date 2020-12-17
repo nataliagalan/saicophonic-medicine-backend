@@ -1,4 +1,4 @@
-# Saicophonic Medicine
+# [Saicophonic Medicine](https://www.saicophonic.com "Saicophonic Medicine")
 A portable music venue and archive, showcasing an expanding library of live music sessions and lyrics with custom timestamps (or digital dog-ears).
 
 [View the Front End Repository](https://github.com/nataliagalan/saicophonic-medicine-frontend "Saicophonic Medicine Front End") 
@@ -14,7 +14,7 @@ A portable music venue and archive, showcasing an expanding library of live musi
   - Add and delete video entries.
   - Edit timestamps, song titles, lyrics, url and artist/band name.
 
-- Viewer: 
+- Visitor: 
   - Explore the full library.
   - Search videos by song title, artist or lyrics.
   - Explore videos by tag.
