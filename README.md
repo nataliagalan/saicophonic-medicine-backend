@@ -14,7 +14,7 @@ A portable music venue and archive, showcasing an expanding library of live musi
   - Add and delete video entries.
   - Edit timestamps, song titles, lyrics, url and artist/band name.
 
-- Viewer: 
+- Visitor: 
   - Explore the full library.
   - Search videos by song title, artist or lyrics.
   - Explore videos by tag.
