@@ -3,12 +3,12 @@ class VideoTag < ApplicationRecord
   belongs_to :tag
 
   #this will index the VideoTag model whenever a record is created or updated or destroyed
-  searchkick
+  # searchkick
 
-  after_commit :reindex_video
+  # after_commit :reindex_video
 
-  def reindex_video
-    video.reindex
-  end
+  # def reindex_video
+  #   video.reindex
+  # end
 
 end
