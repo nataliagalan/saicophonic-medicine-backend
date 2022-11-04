@@ -10,10 +10,7 @@ gem 'searchkick'
 gem 'will_paginate', '~> 3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
-gem 'net-smtp', require: false
-gem 'net-imap', require: false
-gem 'net-pop', require: false
+gem 'rails', '~> 7.0', '>= 7.0.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.4', '>= 1.4.4'
 # Use Puma as the app server
