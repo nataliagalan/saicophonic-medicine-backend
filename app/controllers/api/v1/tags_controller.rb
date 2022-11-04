@@ -12,7 +12,7 @@ class Api::V1::TagsController < ApplicationController
       misspellings: {below: 1, edit_distance: 1}, 
       order: {_score: :desc}
     }
-    tags = Tag.search(params[:query], elastic_query)
+    tags = Tag.search(params[:query],  **elastic_query)
     if response
       render json: tags
     else

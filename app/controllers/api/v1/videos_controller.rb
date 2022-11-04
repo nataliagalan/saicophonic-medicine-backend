@@ -23,7 +23,7 @@ class Api::V1::VideosController < ApplicationController
       # page: params[:page],
       # per_page: 8
     }
-    videos = Video.search(params[:query], elastic_query)
+    videos = Video.search(params[:query],  **elastic_query)
     if response
       render json: VideoSerializer.new(videos).to_serialized_json
     else
@@ -39,7 +39,7 @@ class Api::V1::VideosController < ApplicationController
       misspellings: {below: 1, edit_distance: 1}, 
       order: {_score: :desc}
     }
-    videos = Video.search(params[:tag], elastic_query)
+    videos = Video.search(params[:tag],  **elastic_query)
     if response
       render json: VideoSerializer.new(videos).to_serialized_json
     else
