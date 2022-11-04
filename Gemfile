@@ -7,6 +7,7 @@ gem 'jwt'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem 'searchkick'
+gem 'elasticsearch', '~> 8.5', require: false
 gem 'will_paginate', '~> 3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
