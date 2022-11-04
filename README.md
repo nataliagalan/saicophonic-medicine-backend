@@ -1,17 +1,31 @@
 # [Saicophonic Medicine](https://www.saicophonic.com "Saicophonic Medicine")
-A portable music venue and archive, showcasing an expanding library of live music sessions and lyrics with custom timestamps (or digital dog-ears).
+WebApp that helps build, share and manage a collection of live music videos and lyrics with custom timestamps (or digital dog-ears).
 
 [View the Front End Repository](https://github.com/nataliagalan/saicophonic-medicine-frontend "Saicophonic Medicine Front End") 
+
+## Features
+- Built the ability to easily click on timestamps for a fast video playback experience.
+- Simplified the process for adding timestamps to each video with an intuitive slider.
+- Tuned search and discovery capabilities with Elasticsearch (used by Shopify, Github, LinkedIn...) and autocomplete.
+- Decreased load time by 88.5% with lazy loading implementation.
+- Delivered a fully responsive site with the ability to toggle smoothly between list and grid view.
+- Optimized UX for adding lyrics through a drag and drop feature with keyboard accessibility and
+dynamic forms (added the ability to seamlessly add or remove input fields dynamically). Utilized React Hooks and Redux store for scalability.
+- Created a relational database system (PostgreSQL), and a Rails (RESTful) API backend with endpoints
+for videos, tagged videos, random video, tags, and searched results.
+- Utilized JSON Web Tokens and localStorage to store encrypted admin information on client-side.
+Integrated bcrypt and further secured credential management by storing config in env variable on server-side.
+- Styled using React-Bootstrap, Sass, and custom CSS3.
 
 ## Key User Stories
 - Admin: 
   - Build and categorize an archive of videos with corresponding songs, lyrics and timestamps.
   - Click on a timestamps to play the video at a specific time.
-  - View both lyrics and video simultaneously in desktop or mobile devices.
+  - View both lyrics and video simultaneously in either desktop or mobile devices.
   - Drag form input fields to custom order.
   - Add or remove custom number of input fields.
   - Add and delete video tags.
-  - Add and delete video entries.
+  - Add and delete videos.
   - Edit timestamps, song titles, lyrics, url and artist/band name.
 
 - Visitor: 
@@ -20,23 +34,12 @@ A portable music venue and archive, showcasing an expanding library of live musi
   - Explore videos by tag.
   - Get a random video.
   - Click on a button to share a specific video.
-
-## Features
-- Developed a relational database system (PostgreSQL), and a Rails (RESTful) API backend with endpoints for videos, tagged videos, random video, tags, searched results, and auth.
-- Utilized JSON Web Tokens and local storage to store encrypted user information client-side and bcrypt server-side. 
-- Further secured credential management by storing config in env variable.
-- Ability to seamlessly add or remove input fields dynamically.
-- Utilized Atlassian library to build drag and drop functionality accessible by keyboard as well.
-- Fine tuned search and discovery capabilities via Elasticsearch and autocomplete.
-- Executed server and client side pagination using React Hooks.
-- Delivered a fully responsive site with the ability to toggle smoothly between list and grid view.
-- Optimized pages for fast loading.
-- Simplified the process for adding timestamps to each video with an intuitive slider.
-- Built functional and class components, utilizing their life cycles, props and states via React’s structural hierarchy, and store via Redux library for scalability.
-- Styled using React-Bootstrap (installed via CDN), Sass, and custom CSS3.
-
- ## Walkthrough
-[See a video demo of the app's functionality.](https://vimeo.com/481551182/c203801a37 "Saicophonic Medicine Demo") 
+  
+## Walkthrough
+See a [video demo](https://vimeo.com/481551182/c203801a37 "Saicophonic Medicine Demo") of the app's functionality. 
+Explore current version at [saicophonic.com](https://www.saicophonic.com "Saicophonic Medicine Live Site").
 
 ## Contact
+
 hi@nataliagalan.me | [Visit my LinkedIn](https://linkedin.com/in/natalia-galan "Natalia Galán LinkedIn") 
+
