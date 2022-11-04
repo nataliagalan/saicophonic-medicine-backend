@@ -166,7 +166,7 @@ DEPENDENCIES
   figaro (~> 1.1, >= 1.1.1)
   jwt
   listen (~> 3.2)
-  pg (>= 0.18, < 2.0)
+  pg (~> 1.4, >= 1.4.4)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.4)
@@ -177,7 +177,7 @@ DEPENDENCIES
   will_paginate (~> 3.3)
 
 RUBY VERSION
-   ruby 2.7.2p137
+   ruby 3.1.2p20
 
 BUNDLED WITH
    2.1.4
