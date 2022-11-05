@@ -9,8 +9,9 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 gem 'searchkick'
 gem 'elasticsearch', '< 7.13'
 gem 'bonsai-searchkick'
-# gem 'elasticsearch-api', '~> 7.13'
-# gem 'elastic-transport', '~> 7.13'
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails'
+gem 'bonsai-elasticsearch-rails', github: 'omc/bonsai-elasticsearch-rails'
 
 gem 'will_paginate', '~> 3.3'
 

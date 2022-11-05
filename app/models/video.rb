@@ -1,4 +1,10 @@
+require 'elasticsearch/model'
+
 class Video < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  settings index: { number_of_shards: 1 }
+  
   default_scope {order(created_at: :desc)}
 
   belongs_to :user

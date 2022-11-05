@@ -1,3 +1,21 @@
+GIT
+  remote: https://github.com/elastic/elasticsearch-rails.git
+  revision: 8e0526cc9bf9c3c41a4e989222a19a1f5318d3b6
+  specs:
+    elasticsearch-model (7.2.1)
+      activesupport (> 3)
+      elasticsearch (~> 7)
+      hashie
+    elasticsearch-rails (7.2.1)
+
+GIT
+  remote: https://github.com/omc/bonsai-elasticsearch-rails.git
+  revision: 942dea4a263e0b86c7dc197528ea9770c88146c8
+  specs:
+    bonsai-elasticsearch-rails (0.3.0)
+      elasticsearch-model (< 99)
+      elasticsearch-rails (< 99)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -243,9 +261,12 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bcrypt (~> 3.1.7)
+  bonsai-elasticsearch-rails!
   bonsai-searchkick
   byebug
   elasticsearch (< 7.13)
+  elasticsearch-model!
+  elasticsearch-rails!
   figaro (~> 1.1, >= 1.1.1)
   jwt
   listen (~> 3.2)

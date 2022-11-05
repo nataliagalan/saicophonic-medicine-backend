@@ -1,4 +1,10 @@
+require 'elasticsearch/model'
+
 class Song < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  settings index: { number_of_shards: 1 }
+  
   belongs_to :video
   validates :lyrics, :title, :timestamp, presence: true
 
