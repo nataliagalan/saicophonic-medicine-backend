@@ -18,7 +18,7 @@ class Api::V1::TagsController < ApplicationController
     else
       render json: { error: 'did not find anything' }
     end
-  end #end of search action
+  end
 
   def create
 
@@ -28,4 +28,4 @@ class Api::V1::TagsController < ApplicationController
 
   end
 
-end #end of tc
+end
