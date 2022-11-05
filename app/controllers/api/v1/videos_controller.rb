@@ -69,7 +69,7 @@ class Api::V1::VideosController < ApplicationController
     else
       render json: { error: 'could not create new video' }
     end
-  end # end of create action
+  end
 
   def update
     video = Video.find(params[:id])
@@ -92,7 +92,7 @@ class Api::V1::VideosController < ApplicationController
     else
       render json: { error: 'could not update video info' }, status: :not_acceptable
     end
-  end # end of update action
+  end
 
   def destroy
     video = Video.find(params[:id])
