@@ -37,7 +37,6 @@ Integrated bcrypt and further secured credential management by storing config in
   
 ## Walkthrough
 See a [video demo](https://vimeo.com/481551182/c203801a37 "Saicophonic Medicine Demo") of the app's functionality. 
-Explore current version at [saicophonic.com](https://www.saicophonic.com "Saicophonic Medicine Live Site").
 
 ## Contact
 
